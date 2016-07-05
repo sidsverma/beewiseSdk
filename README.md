@@ -76,6 +76,12 @@ To integrate our SDK in eclipse, these are the steps:
 
 5. Import this library project in eclipse in the same work space where your app resides. Then add beewisesdk project as a dependency in your project.
 
+## ProGuard Requirements
+In case you use ProGuard, add the following line in your proguard configuration(typically in *proguard-rules.pro*):
+```sh
+-dontwarn android.test.**
+```
+
 # Using Android SDK
 
 Follow these steps to use our android SDK:
@@ -97,4 +103,5 @@ In the onStart() function of your activity, if you want to start BeeWise's SMS r
 bw = BW.getInstance(getApplicationContext());
 bw.onStart( <your appId> + "" );
 ```
+
 **To obtain your app id, contact BeeWise at http://bi.beewise.in/**
