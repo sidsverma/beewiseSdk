@@ -82,6 +82,13 @@ In case you use ProGuard, add the following line in your proguard configuration(
 -dontwarn android.test.**
 ```
 
+## JUnit Issue
+In case you face conflict issues around junit and hamcrest, check this out:
+
+http://saltnlight5.blogspot.in/2012/10/whats-up-with-junit-and-hamcrest.html
+
+Work around: Changing ```testCompile 'junit:junit:4.12'``` to ```testCompile 'junit:junit:4.10'``` works.
+
 # Using Android SDK
 
 Follow these steps to use our android SDK:
