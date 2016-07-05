@@ -23,7 +23,6 @@ To integrate our SDK in eclipse, these are the steps:
 
 1. Add following permissions in *app/src/main/AndroidManifest.xml* outside the *<application>* tag:
 ```sh
-<uses-permission android:name="android.permission.GET_ACCOUNTS"/>
 <uses-permission android:name="android.permission.READ_SMS"/>
 <uses-permission android:name="android.permission.RECEIVE_SMS"/>
 <uses-permission android:name="android.permission.INTERNET"/>
