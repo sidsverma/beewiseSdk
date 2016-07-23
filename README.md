@@ -4,7 +4,7 @@
 
 1. Add dependencies to *app/build.gradle*:
 ```sh
-compile 'com.android.beewisesdk:beewisesdk:1.0'
+compile 'com.android.beewisesdk:beewisesdk:1.1.3'
 ```
 
 2. If you would like us to track the city of the user, add the following line in *app/src/main/AndroidManifest.xml* outside the<application> tag:
@@ -83,7 +83,7 @@ http://saltnlight5.blogspot.in/2012/10/whats-up-with-junit-and-hamcrest.html
 
 Work around: Changing it the following way works:
 ```sh
-compile ('com.android.beewisesdk:beewisesdk:1.0') {
+compile ('com.android.beewisesdk:beewisesdk:xxx') {
     transitive=false;
 }
 ```
