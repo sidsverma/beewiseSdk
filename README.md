@@ -7,12 +7,7 @@
 compile 'com.android.beewisesdk:beewisesdk:1.0'
 ```
 
-2. Add repositories to *app/build.gradle*: (this step should be abolished in a while)*
-```sh
-maven { url "https://dl.bintray.com/sidsverma/maven" }
-```
-
-3. If you would like us to track the city of the user, add the following line in *app/src/main/AndroidManifest.xml* outside the<application> tag:
+2. If you would like us to track the city of the user, add the following line in *app/src/main/AndroidManifest.xml* outside the<application> tag:
 ```sh
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -86,7 +81,16 @@ In case you face conflict issues around junit and hamcrest, check this out:
 
 http://saltnlight5.blogspot.in/2012/10/whats-up-with-junit-and-hamcrest.html
 
-Work around: Changing ```testCompile 'junit:junit:4.12'``` to ```testCompile 'junit:junit:4.10'``` works.
+Work around: Changing it the following way works:
+```sh
+compile ('com.android.beewisesdk:beewisesdk:1.0') {
+    transitive=false;
+}
+```
+
+OR
+
+Changing ```testCompile 'junit:junit:4.12'``` to ```testCompile 'junit:junit:4.10'``` works.
 
 # Using Android SDK
 
