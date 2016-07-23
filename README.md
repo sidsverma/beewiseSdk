@@ -82,7 +82,12 @@ In case you face conflict issues around junit and hamcrest, check this out:
 http://saltnlight5.blogspot.in/2012/10/whats-up-with-junit-and-hamcrest.html
 
 Work around: Changing it the following way works:
-Changing ```testCompile 'junit:junit:4.12'``` to ```testCompile 'junit:junit:4.10'``` works.
+Changing ```compile 'com.android.beewisesdk:beewisesdk:xxx'``` to
+```sh
+compile ('com.android.beewisesdk:beewisesdk:xxx') {
+    exclude module: 'junit'
+}
+``` works.
 
 # Using Android SDK
 
