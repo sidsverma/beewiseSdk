@@ -87,7 +87,8 @@ Changing ```compile 'com.android.beewisesdk:beewisesdk:xxx'``` to
 compile ('com.android.beewisesdk:beewisesdk:xxx') {
     exclude module: 'junit'
 }
-``` works.
+```
+works.
 
 # Using Android SDK
 
@@ -99,7 +100,7 @@ In all the activity classes, starting with the class for the main activity, impo
 ```sh
 import com.android.beewisesdk.BW;
 ```
-### Initialization and cleanup of SDK
+### Initialization of SDK
 
 Define a variable called bw in your activity:
 ```sh
