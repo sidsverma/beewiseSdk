@@ -1,5 +1,5 @@
 # About
-This library provides deep unique analytics bsaed on the financial data of users for any android app. Please check out bi.beewise.in for any queries or reach out to me @ +91 81470 19806.
+This library provides deep unique analytics based on the financial data of users for any android app. Automagically use the power of real time purchase & financial data to know your users & personalize their experience. Please check out bi.beewise.in for any queries or reach out to me @ +91 81470 19806.
 
 # Android SDK integration
 
