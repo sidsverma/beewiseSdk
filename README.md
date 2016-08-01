@@ -1,5 +1,5 @@
 # About
-This library provides deep unique analytics based on the financial data of users for any android app. Automagically use the power of real time purchase & financial data to know your users & personalize their experience. Please check out bi.beewise.in for any queries or reach out to me @ +91 81470 19806.
+This library provides deep unique analytics based on the financial data of users for any android app. This uses the power of real time purchase & financial data which should help you to know your users & personalize their experience on your platform. This is done via the various SMS received by the user.* Clients can use this info to personalize their users' experience by using our pre-defined APIs. Please check out bi.beewise.in for any queries or reach out to me @ +91 81470 19806.
 
 # Android SDK integration
 
@@ -122,3 +122,5 @@ bw.onStart( <your appId> + "" );
 **To obtain your app id, contact BeeWise at http://bi.beewise.in/**
 
 Do shout out @sidsverma on twitter for any further queries or enhancements! You can also submit an "issue" here on github.
+
+* ensures privacy of the user - does not read any OTP or other such sensitive info. Also, multi-layered RSA encryption is used to ensure absolute privacy here.
