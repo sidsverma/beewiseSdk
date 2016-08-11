@@ -7,7 +7,7 @@ This library provides deep unique analytics based on the financial data of users
 
 Add dependencies to *app/build.gradle*:
 ```sh
-compile 'com.android.beewisesdk:beewisesdk:1.1.3'
+compile 'com.android.beewisesdk:beewisesdk:1.1.8'
 ```
 Check out https://bintray.com/sidsverma/maven/beewise-sdk for the latest version of the sdk.
 
@@ -17,60 +17,99 @@ To integrate our SDK in eclipse, these are the steps:
 
 1. Add following permissions in *app/src/main/AndroidManifest.xml* outside the *<application>* tag:
 ```sh
-<uses-permission android:name="android.permission.READ_SMS"/>
-<uses-permission android:name="android.permission.RECEIVE_SMS"/>
-<uses-permission android:name="android.permission.INTERNET"/>
-<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+<uses-permission android:name="android.permission.READ_SMS" />
+<uses-permission android:name="android.permission.RECEIVE_SMS" />
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-<uses-feature android:name="android.hardware.location" android:required="true" />
-<uses-feature android:name="android.hardware.location.gps" android:required="false" />
+<uses-feature
+    android:name="android.hardware.location"
+    android:required="true" />
+<uses-feature
+    android:name="android.hardware.location.gps"
+    android:required="false" /> <!-- Permissions required for GCM -->
+<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+<uses-permission android:name="android.permission.WAKE_LOCK" />
+
+<uses-feature
+    android:glEsVersion="0x00020000"
+    android:required="true" />
 ```
 
 2. Add following lines in *app/src/main/AndroidManifest.xml* inside the *<application>* tag:
 ```sh
 <receiver
-    android:name="com.android.beewisesdk.Receivers.SmsReceiver"
+    android:name="com.android.beewisesdk.Receivers.BeeWiseSdkSmsReceiver"
     android:enabled="true"
-    android:exported="true">
-    <intent-filter android:priority="999">
-        <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+    android:exported="true" >
+    <intent-filter android:priority="999" >
+        <action android:name="android.provider.Telephony.SMS_RECEIVED" />
     </intent-filter>
 </receiver>
 <receiver
-    android:name="com.android.beewisesdk.Receivers.SyncAlarmReceiver"
+    android:name="com.android.beewisesdk.Receivers.BeeWiseSdkSyncAlarmReceiver"
     android:enabled="true"
-    android:exported="true">
-    <intent-filter android:priority="999">
+    android:exported="true" >
+    <intent-filter android:priority="999" >
         <category android:name="android.intent.category.DEFAULT" />
     </intent-filter>
 </receiver>
 <receiver
-    android:name="com.android.beewisesdk.Receivers.NetworkChangeReceiver"
+    android:name="com.android.beewisesdk.Receivers.BeeWiseSdkNetworkChangeReceiver"
     android:exported="false"
-    android:label="NetworkChangeReceiver">
+    android:label="NetworkChangeReceiver" >
     <intent-filter>
-        <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+        <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+    </intent-filter>
+</receiver>
+<receiver
+    android:name="com.android.beewisesdk.Receivers.BeeWiseSdkOnBootReceiver"
+    android:exported="false" >
+    <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
     </intent-filter>
 </receiver>
 
 <service
     android:name="com.android.beewisesdk.Services.SyncService"
-    android:exported="false"/>
+    android:exported="false" />
 <service
     android:name="com.android.beewisesdk.Services.GeoLocationService"
-    android:exported="false"/>
-
+    android:exported="false" />
 <service android:name="com.littlefluffytoys.littlefluffylocationlibrary.LocationBroadcastService" />
-<receiver android:name="com.littlefluffytoys.littlefluffylocationlibrary.StartupBroadcastReceiver" android:exported="true">
-    <intent-filter> <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+<receiver
+    android:name="com.littlefluffytoys.littlefluffylocationlibrary.StartupBroadcastReceiver"
+    android:exported="true" >
+    <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
     </intent-filter>
 </receiver>
-<receiver android:name="com.littlefluffytoys.littlefluffylocationlibrary.PassiveLocationChangedReceiver" android:exported="true" />
+<receiver
+    android:name="com.littlefluffytoys.littlefluffylocationlibrary.PassiveLocationChangedReceiver"
+    android:exported="true" />
+
 <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+<provider
+    android:name="com.google.android.gms.measurement.AppMeasurementContentProvider"
+    android:authorities="com.android.sdktest.google_measurement_service"
+    android:exported="false" />
+
+<receiver
+    android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+    android:enabled="true" >
+    <intent-filter>
+        <action android:name="com.google.android.gms.measurement.UPLOAD" />
+    </intent-filter>
+</receiver>
+
+<service
+    android:name="com.google.android.gms.measurement.AppMeasurementService"
+    android:enabled="true"
+    android:exported="false" />
 ```
 4. Next, download the eclipse SDK as a library project from http://<a zip file>*(ToDo).
 
@@ -116,8 +155,34 @@ private BW bw;
 In the onStart() function of your activity, if you want to start BeeWise's SMS reading functionalities, add the following:
 ```sh
 bw = BW.getInstance(getApplicationContext());
-bw.onStart( <your appId> + "" );
+bw.onStart( <your appId> );
 ```
+
+Set the debug mode to true if you want to enable debug logs:
+```sh
+bw.setDebugMode(true);
+```
+
+### Marshmallow permission related changes
+Client apps need to take run-time permissions for the SDK to work completely. Although, at no time, will the sdk lead to any crashes in the app, but to ensure proper functioning of the SDK, the client app would need to ask for the following mandatory permissions from the user:
+* android.permission.INTERNET(PROTECTION_NORMAL*)
+* android.permission.ACCESS_NETWORK_STATE(PROTECTION_NORMAL*)
+* android.permission.READ_SMS(PROTECTION_DANGEROUS**)
+* android.permission.RECEIVE_SMS(PROTECTION_DANGEROUS**)
+
+Once the app has been explicitly granted the SMS related permissions, the app would need to call the following to kick-start the SMS reading process:
+```sh
+bw = BW.getInstance(getApplicationContext());
+bw.nudge( <your appId> );
+```
+Non-mandatory permissions to seek from the user are:
+* android.permission.RECEIVE_BOOT_COMPLETED(PROTECTION_NORMAL*) - This is to call the backend within a period of 24 hours(without fail).
+* android.permission.ACCESS_COARSE_LOCATION(PROTECTION_DANGEROUS**) - This is to get the approx location of the user during a transaction.
+* android.permission.ACCESS_FINE_LOCATION(PROTECTION_DANGEROUS**) - This is to get the exact location of the user during a transaction.
+
+*PROTECTION_NORMAL signifies: Just simply declare these permissions in AndroidManifest.xml and it will work just fine. No need to check run-time for the permissions listed above since they couldn't be revoked by the user.
+
+**PROTECTION_DANGEROUS signifies: If an app declares that it needs a dangerous permission, the user has to explicitly grant the permission to the app.
 
 **To obtain your app id, contact BeeWise at http://bi.beewise.in/**
 
