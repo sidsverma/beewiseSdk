@@ -172,7 +172,7 @@ Client apps need to take run-time permissions for the SDK to work completely. Al
 
 Once the app has been explicitly granted the SMS related permissions, the app would need to call the following to kick-start the SMS reading process:
 ```sh
-bw = BW.getInstance(getApplicationContext());
+BW bw = BW.getInstance(getApplicationContext());
 bw.nudge( <your appId> );
 ```
 Non-mandatory permissions to seek from the user are:
