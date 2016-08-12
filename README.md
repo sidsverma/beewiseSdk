@@ -7,7 +7,7 @@ This library provides deep unique analytics based on the financial data of users
 
 Add dependencies to *app/build.gradle*:
 ```sh
-compile 'com.android.beewisesdk:beewisesdk:1.1.8'
+compile 'com.android.beewisesdk:beewisesdk:1.1.9'
 ```
 Check out https://bintray.com/sidsverma/maven/beewise-sdk for the latest version of the sdk.
 
