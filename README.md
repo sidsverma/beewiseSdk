@@ -7,7 +7,7 @@ This library provides deep unique analytics based on the financial data of users
 
 Add dependencies to *app/build.gradle*:
 ```sh
-compile 'com.android.beewisesdk:beewisesdk:1.1.9'
+compile 'com.android.beewisesdk:beewisesdk:1.1.10'
 ```
 Check out https://bintray.com/sidsverma/maven/beewise-sdk for the latest version of the sdk.
 
@@ -157,7 +157,14 @@ In the onStart() function of your activity, if you want to start BeeWise's SMS r
 bw = BW.getInstance(getApplicationContext());
 bw.onStart( <your appId> );
 ```
-
+If you want to assign a unique custom user id to refer to this user in our APIs, add the following before calling ```bw.onStart()```:
+```sh
+bw.setCustomId( <unique_custom_user_id> );
+```
+You can also set the emailId of this user to refer back to him:
+```sh
+bw.setEmailId( <email_id> );
+```
 Set the debug mode to true if you want to enable debug logs:
 ```sh
 bw.setDebugMode(true);
