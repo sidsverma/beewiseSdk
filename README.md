@@ -7,7 +7,7 @@ This library provides deep unique analytics based on the financial data of users
 
 Add dependencies to *app/build.gradle*:
 ```sh
-compile 'com.android.beewisesdk:beewisesdk:1.1.10'
+compile 'com.android.beewisesdk:beewisesdk:1.2'
 ```
 Check out https://bintray.com/sidsverma/maven/beewise-sdk for the latest version of the sdk.
 
@@ -161,7 +161,7 @@ If you want to assign a unique custom user id to refer to this user in our APIs,
 ```sh
 bw.setCustomId( <unique_custom_user_id> );
 ```
-You can also set the emailId of this user to refer back to him:
+You can also set the emailId of this user to improve readability(this currently cannot be used to refer to the particular user):
 ```sh
 bw.setEmailId( <email_id> );
 ```
