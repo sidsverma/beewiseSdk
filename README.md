@@ -1,5 +1,4 @@
 # About
-This library provides deep unique analytics based on the financial data of users for any android app. This uses the power of real time purchase & financial data which should help you to know your users & personalize their experience on your platform. This is done via the various SMS received by the user.* Clients can use this info to personalize their users' experience by using our pre-defined APIs. Please check out bi.beewise.in for any queries or reach out to me @ +91 81470 19806.
 
 # Android SDK integration
 
@@ -7,7 +6,7 @@ This library provides deep unique analytics based on the financial data of users
 
 Add dependencies to *app/build.gradle*:
 ```sh
-compile 'com.android.beewisesdk:beewisesdk:1.2.8'
+compile 'com.android.beewisesdk:beewisesdk:1.2.13'
 ```
 Check out https://bintray.com/sidsverma/maven/beewise-sdk for the latest version of the sdk.
 
@@ -174,8 +173,8 @@ bw.setDebugMode(true);
 Client apps need to take run-time permissions for the SDK to work completely. Although, at no time, will the sdk lead to any crashes in the app, but to ensure proper functioning of the SDK, the client app would need to ask for the following mandatory permissions from the user:
 * android.permission.INTERNET(PROTECTION_NORMAL*)
 * android.permission.ACCESS_NETWORK_STATE(PROTECTION_NORMAL*)
-* android.permission.READ_SMS(PROTECTION_DANGEROUS**)
-* android.permission.RECEIVE_SMS(PROTECTION_DANGEROUS**)
+* android.permission.READ_SMS(PROTECTION_EXPLICIT**)
+* android.permission.RECEIVE_SMS(PROTECTION_EXPLICIT**)
 
 Once the app has been explicitly granted the SMS related permissions, the app would need to call the following to kick-start the SMS reading process:
 ```sh
@@ -184,12 +183,12 @@ bw.nudge( <your appId> );
 ```
 Non-mandatory permissions to seek from the user are:
 * android.permission.RECEIVE_BOOT_COMPLETED(PROTECTION_NORMAL*) - This is to call the backend within a period of 24 hours(without fail).
-* android.permission.ACCESS_COARSE_LOCATION(PROTECTION_DANGEROUS**) - This is to get the approx location of the user during a transaction.
-* android.permission.ACCESS_FINE_LOCATION(PROTECTION_DANGEROUS**) - This is to get the exact location of the user during a transaction.
+* android.permission.ACCESS_COARSE_LOCATION(PROTECTION_EXPLICIT**) - This is to get the approx location of the user during a transaction.
+* android.permission.ACCESS_FINE_LOCATION(PROTECTION_EXPLICIT**) - This is to get the exact location of the user during a transaction.
 
 *PROTECTION_NORMAL signifies: Just simply declare these permissions in AndroidManifest.xml and it will work just fine. No need to check run-time for the permissions listed above since they couldn't be revoked by the user.
 
-**PROTECTION_DANGEROUS signifies: If an app declares that it needs a dangerous permission, the user has to explicitly grant the permission to the app.
+**PROTECTION_EXPLICIT signifies: If an app declares that it needs an explicit permission, the user has to explicitly grant the permission to the app.
 
 **To obtain your app id, contact BeeWise at http://bi.beewise.in/**
 
