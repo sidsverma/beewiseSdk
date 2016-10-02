@@ -86,7 +86,9 @@ To integrate our SDK in eclipse, these are the steps:
 ```
 4. Next, download the eclipse SDK as a library project from [get in touch with us for this].
 
-5. Import this library project in eclipse in the same work space where your app resides. Then add beewisesdk project as a dependency in your project.
+5. Import classes.jar in libs/ directory of your project
+
+6. Import classes.jar in your project 
 
 ## ProGuard Requirements
 In case you use ProGuard, add the following line in your proguard configuration(typically in *proguard-rules.pro*):
