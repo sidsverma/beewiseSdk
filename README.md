@@ -6,7 +6,7 @@
 
 Add dependencies to *app/build.gradle*:
 ```sh
-compile 'com.android.beewisesdk:beewisesdk:1.2.13'
+compile 'com.sdk.beewise:beewisesdk:1.2.16'
 ```
 Check out https://bintray.com/sidsverma/maven/beewise-sdk for the latest version of the sdk.
 
@@ -30,87 +30,61 @@ To integrate our SDK in eclipse, these are the steps:
 <uses-feature
     android:name="android.hardware.location.gps"
     android:required="false" /> <!-- Permissions required for GCM -->
-<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-<uses-permission android:name="android.permission.WAKE_LOCK" />
-
-<uses-feature
-    android:glEsVersion="0x00020000"
-    android:required="true" />
 ```
 
 2. Add following lines in *app/src/main/AndroidManifest.xml* inside the *<application>* tag:
 ```sh
 <receiver
-    android:name="com.android.beewisesdk.Receivers.BeeWiseSdkSmsReceiver"
+    android:name=".Receivers.BeeWiseSdkSmsReceiver"
     android:enabled="true"
-    android:exported="true" >
-    <intent-filter android:priority="999" >
-        <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+    android:exported="true">
+    <intent-filter android:priority="999">
+        <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
     </intent-filter>
 </receiver>
 <receiver
-    android:name="com.android.beewisesdk.Receivers.BeeWiseSdkSyncAlarmReceiver"
+    android:name=".Receivers.BeeWiseSdkSyncAlarmReceiver"
     android:enabled="true"
-    android:exported="true" >
-    <intent-filter android:priority="999" >
+    android:exported="true">
+    <intent-filter android:priority="999">
         <category android:name="android.intent.category.DEFAULT" />
     </intent-filter>
 </receiver>
 <receiver
-    android:name="com.android.beewisesdk.Receivers.BeeWiseSdkNetworkChangeReceiver"
+    android:name=".Receivers.BeeWiseSdkNetworkChangeReceiver"
     android:exported="false"
-    android:label="NetworkChangeReceiver" >
+    android:label="NetworkChangeReceiver">
     <intent-filter>
-        <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+        <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
     </intent-filter>
 </receiver>
 <receiver
     android:name="com.android.beewisesdk.Receivers.BeeWiseSdkOnBootReceiver"
-    android:exported="false" >
+    android:exported="false">
     <intent-filter>
-        <action android:name="android.intent.action.BOOT_COMPLETED" />
+        <action android:name="android.intent.action.BOOT_COMPLETED"/>
     </intent-filter>
 </receiver>
 
 <service
     android:name="com.android.beewisesdk.Services.SyncService"
-    android:exported="false" />
+    android:exported="false"/>
 <service
     android:name="com.android.beewisesdk.Services.GeoLocationService"
-    android:exported="false" />
-<service android:name="com.littlefluffytoys.littlefluffylocationlibrary.LocationBroadcastService" />
-
-<receiver
-    android:name="com.littlefluffytoys.littlefluffylocationlibrary.StartupBroadcastReceiver"
-    android:exported="true" >
-    <intent-filter>
-        <action android:name="android.intent.action.BOOT_COMPLETED" />
-    </intent-filter>
-</receiver>
-<receiver
-    android:name="com.littlefluffytoys.littlefluffylocationlibrary.PassiveLocationChangedReceiver"
-    android:exported="true" />
-
-<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
-<provider
-    android:name="com.google.android.gms.measurement.AppMeasurementContentProvider"
-    android:authorities="com.android.sdktest.google_measurement_service"
-    android:exported="false" />
-
-<receiver
-    android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-    android:enabled="true" >
-    <intent-filter>
-        <action android:name="com.google.android.gms.measurement.UPLOAD" />
-    </intent-filter>
-</receiver>
-
+    android:exported="false"/>
 <service
-    android:name="com.google.android.gms.measurement.AppMeasurementService"
-    android:enabled="true"
-    android:exported="false" />
+    android:name="com.android.beewisesdk.Services.BeeWiseSdkSmsReceivedService"
+    android:exported="false"/>
+
+<service android:name="com.littlefluffytoys.littlefluffylocationlibrary.LocationBroadcastService" />
+<receiver android:name="com.littlefluffytoys.littlefluffylocationlibrary.StartupBroadcastReceiver" android:exported="true">
+    <intent-filter> <action android:name="android.intent.action.BOOT_COMPLETED" />
+    </intent-filter>
+</receiver>
+<receiver android:name="com.littlefluffytoys.littlefluffylocationlibrary.PassiveLocationChangedReceiver" android:exported="true" />
+<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
 ```
-4. Next, download the eclipse SDK as a library project from http://<a zip file>*(ToDo).
+4. Next, download the eclipse SDK as a library project from [get in touch with us for this].
 
 5. Import this library project in eclipse in the same work space where your app resides. Then add beewisesdk project as a dependency in your project.
 
@@ -126,9 +100,9 @@ In case you face conflict issues around junit and hamcrest, check this out:
 http://saltnlight5.blogspot.in/2012/10/whats-up-with-junit-and-hamcrest.html
 
 Work around: Changing it the following way works:
-Changing ```compile 'com.android.beewisesdk:beewisesdk:xxx'``` to
+Changing ```compile 'com.sdk.beewise:beewisesdk:xxx'``` to
 ```sh
-compile ('com.android.beewisesdk:beewisesdk:xxx') {
+compile ('com.sdk.beewise:beewisesdk:xxx') {
     exclude module: 'junit'
 }
 ```
