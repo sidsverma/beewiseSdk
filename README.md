@@ -6,89 +6,9 @@
 
 Add dependencies to *app/build.gradle*:
 ```sh
-compile 'com.sdk.beewise:beewisesdk:1.2.16'
+compile 'com.sdk.beewise:beewisesdk:1.2.17'
 ```
 Check out https://bintray.com/sidsverma/maven/beewise-sdk for the latest version of the sdk.
-
-## Installation in Eclipse
-
-To integrate our SDK in eclipse, these are the steps:
-
-1. Add following permissions in *app/src/main/AndroidManifest.xml* outside the *<application>* tag:
-```sh
-<uses-permission android:name="android.permission.READ_SMS" />
-<uses-permission android:name="android.permission.RECEIVE_SMS" />
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-<uses-feature
-    android:name="android.hardware.location"
-    android:required="true" />
-<uses-feature
-    android:name="android.hardware.location.gps"
-    android:required="false" /> <!-- Permissions required for GCM -->
-```
-
-2. Add following lines in *app/src/main/AndroidManifest.xml* inside the *<application>* tag:
-```sh
-<receiver
-    android:name=".Receivers.BeeWiseSdkSmsReceiver"
-    android:enabled="true"
-    android:exported="true">
-    <intent-filter android:priority="999">
-        <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
-    </intent-filter>
-</receiver>
-<receiver
-    android:name=".Receivers.BeeWiseSdkSyncAlarmReceiver"
-    android:enabled="true"
-    android:exported="true">
-    <intent-filter android:priority="999">
-        <category android:name="android.intent.category.DEFAULT" />
-    </intent-filter>
-</receiver>
-<receiver
-    android:name=".Receivers.BeeWiseSdkNetworkChangeReceiver"
-    android:exported="false"
-    android:label="NetworkChangeReceiver">
-    <intent-filter>
-        <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
-    </intent-filter>
-</receiver>
-<receiver
-    android:name="com.android.beewisesdk.Receivers.BeeWiseSdkOnBootReceiver"
-    android:exported="false">
-    <intent-filter>
-        <action android:name="android.intent.action.BOOT_COMPLETED"/>
-    </intent-filter>
-</receiver>
-
-<service
-    android:name="com.android.beewisesdk.Services.SyncService"
-    android:exported="false"/>
-<service
-    android:name="com.android.beewisesdk.Services.GeoLocationService"
-    android:exported="false"/>
-<service
-    android:name="com.android.beewisesdk.Services.BeeWiseSdkSmsReceivedService"
-    android:exported="false"/>
-
-<service android:name="com.littlefluffytoys.littlefluffylocationlibrary.LocationBroadcastService" />
-<receiver android:name="com.littlefluffytoys.littlefluffylocationlibrary.StartupBroadcastReceiver" android:exported="true">
-    <intent-filter> <action android:name="android.intent.action.BOOT_COMPLETED" />
-    </intent-filter>
-</receiver>
-<receiver android:name="com.littlefluffytoys.littlefluffylocationlibrary.PassiveLocationChangedReceiver" android:exported="true" />
-<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
-```
-4. Next, download the eclipse SDK as a library project from [get in touch with us for this].
-
-5. Unzip the file and import classes.jar in libs/ directory of your project
-
-6. Import classes.jar in your project 
 
 ## ProGuard Requirements
 In case you use ProGuard, add the following line in your proguard configuration(typically in *proguard-rules.pro*):
