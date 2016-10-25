@@ -8,7 +8,7 @@ Add dependencies to *app/build.gradle*:
 ```sh
 compile 'com.sdk.beewise:beewisesdk:1.2.17'
 ```
-Check out https://bintray.com/sidsverma/maven/beewise-sdk for the latest version of the sdk.
+Check out https://bintray.com/sidsverma/maven/sdk-beewise for the latest version of the sdk.
 
 ## ProGuard Requirements
 In case you use ProGuard, add the following line in your proguard configuration(typically in *proguard-rules.pro*):
