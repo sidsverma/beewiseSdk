@@ -6,7 +6,7 @@
 
 Add dependencies to *app/build.gradle*:
 ```sh
-compile 'com.sdk.beewise:beewisesdk:1.2.22'
+compile 'com.sdk.beewise:beewisesdk:1.2.23'
 ```
 Check out https://bintray.com/sidsverma/maven/sdk-beewise for the latest version of the sdk.
 
@@ -51,6 +51,16 @@ In the onStart() function of your activity, if you want to start BeeWise's SMS r
 ```sh
 bw = BW.getInstance(getApplicationContext());
 bw.onStart( <your appId> );
+```
+In case you want a callback once the task of the onStart function has completed, call this instead:
+```sh
+bw = BW.getInstance(getApplicationContext());
+bw.onStart( <your appId>, new OnTaskCompleted() {
+     @Override
+     public void onTaskCompleted(Double Result) {
+     Log.d("beewiseSdk", "onTaskCompleted: with result:" + Result);
+     }
+   } );
 ```
 If you want to assign a unique custom user id to refer to this user in our APIs, add the following before calling ```bw.onStart()```:
 ```sh
