@@ -58,7 +58,7 @@ bw = BW.getInstance(getApplicationContext());
 bw.onStart( <your appId>, new OnTaskCompleted() {
      @Override
      public void onTaskCompleted(Double Result) {
-     Log.d("beewiseSdk", "onTaskCompleted: with result:" + Result);
+     // Result == 1.0 -> means it synced successfully.
      }
    } );
 ```
