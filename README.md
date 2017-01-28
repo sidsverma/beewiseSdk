@@ -6,7 +6,7 @@
 
 Add dependencies to *app/build.gradle*:
 ```sh
-compile 'com.sdk.beewise:beewisesdk:1.2.23'
+compile 'com.sdk.beewise:beewisesdk:1.2.25'
 ```
 Check out https://bintray.com/sidsverma/maven/sdk-beewise for the latest version of the sdk.
 
