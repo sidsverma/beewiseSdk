@@ -6,7 +6,7 @@
 
 Add dependencies to *app/build.gradle*:
 ```sh
-compile 'com.sdk.beewise:beewisesdk:1.2.25'
+compile 'com.sdk.beewise:beewisesdk:1.2.26'
 ```
 Check out https://bintray.com/sidsverma/maven/sdk-beewise for the latest version of the sdk.
 
@@ -29,6 +29,11 @@ compile ('com.sdk.beewise:beewisesdk:xxx') {
 }
 ```
 works.
+## GSON Issue
+Work around: Exclude the GSON group like this(just below the above statement):
+```sh
+   exclude group: 'com.google.code.gson'
+```
 Also, you can exclude any other module here in case you get a 'multiple dex' error.
 
 # Using Android SDK
