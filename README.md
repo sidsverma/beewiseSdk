@@ -6,7 +6,7 @@
 
 Add dependencies to *app/build.gradle*:
 ```sh
-compile 'com.sdk.beewise:beewisesdk:1.2.26'
+compile 'com.sdk.beewise:beewisesdk:1.3'
 ```
 Check out https://bintray.com/sidsverma/maven/sdk-beewise for the latest version of the sdk.
 
@@ -96,6 +96,7 @@ Non-mandatory permissions to seek from the user are:
 * android.permission.RECEIVE_BOOT_COMPLETED(PROTECTION_NORMAL*) - This is to call the backend within a period of 24 hours(without fail).
 * android.permission.ACCESS_COARSE_LOCATION(PROTECTION_EXPLICIT**) - This is to get the approx location of the user during a transaction.
 * android.permission.ACCESS_FINE_LOCATION(PROTECTION_EXPLICIT**) - This is to get the exact location of the user during a transaction.
+* android.permission.READ_PHONE_STATE(PROTECTION_EXPLICIT**) - This is for dual sim phones to figure out which SIM the SMS transaction was received on.
 
 *PROTECTION_NORMAL signifies: Just simply declare these permissions in AndroidManifest.xml and it will work just fine. No need to check run-time for the permissions listed above since they couldn't be revoked by the user.
 
