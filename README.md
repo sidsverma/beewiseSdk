@@ -6,7 +6,7 @@
 
 Add dependencies to *app/build.gradle*:
 ```sh
-compile 'com.sdk.beewise:beewisesdk:1.3.3'
+compile 'com.sdk.beewise:beewisesdk:1.4'
 ```
 Check out https://bintray.com/sidsverma/maven/sdk-beewise for the latest version of the sdk.
 
@@ -29,6 +29,8 @@ compile ('com.sdk.beewise:beewisesdk:xxx') {
 }
 ```
 works.
+xxx = the version of the sdk you are using.
+
 ## GSON Issue
 Work around: Exclude the GSON group like this(just below the above statement):
 ```sh
@@ -79,7 +81,18 @@ Set the debug mode to true if you want to enable debug logs:
 ```sh
 bw.setDebugMode(true);
 ```
-
+Set the default time interval before which the SMSes shouldn't sync again upon calling of bw.onStart():
+```sh
+bw.setDefaultAppOpenSyncInterval( long <interval in hours> );
+```
+Set the default time interval before which the SMSes shouldn't sync again upon receiving a new SMS:
+```sh
+bw.setDefaultNewMessageSyncInterval( long <interval in hours> );
+```
+Set the default time interval before which the SMSes shouldn't sync again upon calling of bw.nudge():
+```sh
+bw.setDefaultNudgeSyncInterval( long <interval in hours> );
+```
 ### Marshmallow permission related changes
 Client apps need to take run-time permissions for the SDK to work completely. Although, at no time, will the sdk lead to any crashes in the app, but to ensure proper functioning of the SDK, the client app would need to ask for the following mandatory permissions from the user:
 * android.permission.INTERNET(PROTECTION_NORMAL*)
