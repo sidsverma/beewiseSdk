@@ -6,7 +6,7 @@
 
 Add dependencies to *app/build.gradle*:
 ```sh
-compile 'com.sdk.beewise:beewisesdk:1.4'
+compile 'com.sdk.beewise:beewisesdk:2.0'
 ```
 Check out https://bintray.com/sidsverma/maven/sdk-beewise for the latest version of the sdk.
 
@@ -80,6 +80,10 @@ bw.setEmailId( <email_id> );
 Set the debug mode to true if you want to enable debug logs:
 ```sh
 bw.setDebugMode(true);
+```
+Set the base URL as your server's URL which will contain the various web service calls(This is a mandatory function call):
+```sh
+bw.setBaseUrl(""); // this has to be your server IP eg. "https://192.168.2.34"
 ```
 Set the default time interval before which the SMSes shouldn't sync again upon calling of bw.onStart():
 ```sh
