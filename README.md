@@ -69,6 +69,10 @@ bw.onStart( <your appId>, new OnTaskCompleted() {
      }
    } );
 ```
+Set the base URL as your server's URL which will contain the various web service calls(This is a mandatory function call):
+```sh
+bw.setBaseUrl(""); // this has to be your server IP eg. "https://192.168.2.34"
+```
 If you want to assign a unique custom user id to refer to this user in our APIs, add the following before calling ```bw.onStart()```:
 ```sh
 bw.setCustomId( <unique_custom_user_id> );
@@ -80,10 +84,6 @@ bw.setEmailId( <email_id> );
 Set the debug mode to true if you want to enable debug logs:
 ```sh
 bw.setDebugMode(true);
-```
-Set the base URL as your server's URL which will contain the various web service calls(This is a mandatory function call):
-```sh
-bw.setBaseUrl(""); // this has to be your server IP eg. "https://192.168.2.34"
 ```
 Set the default time interval before which the SMSes shouldn't sync again upon calling of bw.onStart():
 ```sh
